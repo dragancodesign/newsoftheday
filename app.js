@@ -1,23 +1,46 @@
-// SECTION 16 jQuery Project - News of the Day App 
+// app.js // STARTED MY APP 
 
-// * * * 80 News of the Day App * * * 
+$(document).ready(function () {
+    // My BUTTON ANIMATION with animate.css 
+    $(".btn").addClass("animated rotateInDownRight"); // bounce, tada, fadeIn
 
-// * * * 81 Preparing HTML markup * * * 
+    // CODING STARTED FROM HERE first my URL LINK, if not work ...
+    // var url="https://newsapi.org/v2/top-headlines?country=ch&apiKey=307cd047de4d482e8d1d6c3e788a28ad";
 
-// * * * 82 Adding - Preparing CSS Styling * * * 
+    // ... then USE his from tutorial:
+    var url = "http://hn.algolia.com/api/v1/search?query=javascript";
 
-// * * * 83 Making AJAX call to API and getting random item * * * NOT WORKED
-// GET THE: floor value (low)
-// var f = Math.floor(5.95)
-// console.log(f); // 5
-// GET THE: ceiling value (high)
-// var f = Math.ceil(5.95)
-// console.log(f);
+    $.getJSON(url, function (data) {
 
-// * * * 84 Populating data to UI and add Tweet feature * * * 
+        var currentQuote = '';
+        var quotes = data.hits;
 
-// * * * 85 Add clickable link to the news title * * * 
+        $('.read').on('click', function () {
+            currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            // console.log(currentQuote);
 
-// * * * 86 GO LIVE with GITHUB Pages * * * 
-// MY GitHub Page is:
-// https://codesigndesign.github.io/master-javascript-from-scratch-4jquery-and-1reactjs/. 
+            // MAKING quoteBody and quoteAuthor
+            // in lesson 85 we will FIRST remove the Title to make it clickable
+            // $('.quoteBody').html(currentQuote.title);
+            $('.quoteBody').hide();
+            $('.quoteBodyLink').html(currentQuote.title);
+            // to open in new window ADD ATTRIBUTE _blank
+            $('.quoteBodyLink')
+                .attr('href', currentQuote.url)
+                .attr('target', '_blank');
+
+            $('.quoteAuthor').html(currentQuote.author);
+
+            // LINK TO Tweeter TO TWEET (develoment page reference: here we simply want to tweet the text)
+            $('.tweetQuote')
+                .attr('href', 'https://twitter.com/intent/tweet?text= ' + currentQuote.title + ' - ' + currentQuote.author)
+                .attr('target', '_blank')
+                .attr('disabled', false);
+            // add code to change BUTTON text after showing 1st Tweet
+            $('.read').html('Show me one more');
+        });
+
+        // console.log(quotes[0].title);
+        // console.log(data);
+    });
+});
