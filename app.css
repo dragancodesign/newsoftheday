@@ -1,0 +1,40 @@
+/* CHECK THE VERSION OF BOOTSTRAP AND FONT AWESOME 
+TO BE SURE THAT EVERYTHING IS OK */
+
+body {
+    font-family: 'Yatra One', cursive;
+    text-shadow: 4px 4px 4px #aaa;
+    }
+
+.quoteBody {
+    font-size: 3.5rem !important;
+    color: royalblue !important;    
+    /* ADDED TEXT SHADOWS @ @ @ @ */
+    text-shadow: 4px 4px 4px #aaa;
+}
+
+.quoteAuthor {
+    font-size: 2rem !important;
+}
+
+.btn {
+    border-radius: 10px;
+    font-size: 2rem;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+h1 {
+    text-align: center;
+    padding-top: 0.5rem;
+}
+
+.btn {
+    margin-top: 2rem;
+} 
+
+button {
+    margin: 20px;
+}
